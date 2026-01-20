@@ -2,8 +2,8 @@ NAME= woody-woodpacker
 
 SRC=	src/main.c \
 		src/elf_process.c \
-# 		src/encryptor.c \
-		src/injector.c \
+		src/encrypt.c \
+# 		src/injector.c \
 		src/utils.c
 
 OBJ= $(SRC:.c=.o)
@@ -13,7 +13,7 @@ ASMFLAGS= -f elf64
 
 CC= gcc
 
-CFLAGS= -Wall -Wextra -Werror -fno-pie -no-pie
+CFLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 
@@ -30,7 +30,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) woody
 
 re: fclean all
 

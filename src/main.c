@@ -6,7 +6,7 @@
 /*   By: hugo <hugo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:55:39 by hugo              #+#    #+#             */
-/*   Updated: 2026/01/19 18:56:19 by hugo             ###   ########.fr       */
+/*   Updated: 2026/01/20 13:39:39 by hugo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int main(int ac, char **av)
 
 
 	process_elf(mapped, file_size);
-
-	munmap(mapped, file_size);
 	
 
 	return 0;
