@@ -2,11 +2,11 @@ NAME= woody-woodpacker
 
 SRC=	src/main.c \
 		src/elf_process.c \
-		src/encrypt.c \
-# 		src/injector.c \
-		src/utils.c
+
+ASM_SRC=	src/encrypt.asm
 
 OBJ= $(SRC:.c=.o)
+ASM_OBJ = $(ASM_SRC:.asm=.o)
 
 ASM= nasm
 ASMFLAGS= -f elf64
@@ -17,8 +17,8 @@ CFLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(ASM_OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(ASM_OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -27,7 +27,7 @@ $(NAME): $(OBJ)
 	$(ASM) $(ASMFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(ASM_OBJ)
 
 fclean: clean
 	rm -f $(NAME) woody
